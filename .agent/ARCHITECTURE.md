@@ -21,10 +21,10 @@ AI 에이전트의 핵심 로직과 정의가 존재하는 곳입니다.
     - *예시:* `value_investor.md` (가치 투자), `macro_economist.md` (거시 경제 중심), `crypto_enthusiast.md` (암호화폐 낙관론자).
     - **사용법:** "시스템 프롬프트"로 로드하여 어조와 관점을 설정합니다.
 
-- **`skills/` (기술 및 지침)**
+- **`instructions/` (지침 및 가이드)**
     - 구체적인 작업 지침과 출력 형식을 정의합니다. 이는 중립적이며 어떤 페르소나가 사용해도 동일한 기능을 수행해야 합니다.
-    - *예시:* `analyze_news.md` (뉴스 요약), `technical_analysis.md` (차트 지표 해석), `on_chain_analysis.md` (온체인 데이터 분석).
-    - **사용법:** "작업 지시"로 로드하여 구체적인 행동을 유도합니다.
+    - *예시:* `discover_hidden_gems_from_x.md` (X 기반 유망 종목 발굴), `analyze_news.md` (뉴스 요약), `technical_analysis.md` (차트 지표 해석).
+    - **사용법:** 에이전트에게 "작업 지시"로 로드하여 구체적인 분석 방법, 필터링 기준, 결과 출력 형식을 정의합니다.
 
 - **`knowledge/` (지식 저장소)**
     - 변하지 않는 지식 베이스, 공식, 역사적 데이터 패턴 등을 참조용으로 저장합니다.
@@ -56,13 +56,13 @@ AI 에이전트가 분석 작업(예: "테슬라 분석해줘")을 수행할 때
 1. **목표 식별:** 기술적 분석인지, 펀더멘탈 분석인지, 뉴스 기반인지 파악합니다.
 2. **컴포넌트 선택:**
     - **Persona** 선택 (예: `growth_hunter.md` - 성장주 투자자)
-    - **Skill** 선택 (예: `analyze_earnings_call.md` - 실적 발표 분석)
+    - **Instruction** 선택 (예: `analyze_earnings_call.md` - 실적 발표 분석)
 3. **데이터 확보:**
     - `data/` 폴더에 관련 파일이 있는지 확인합니다.
     - 없다면, `tools/collectors/` 스크립트를 실행하여 `data/raw/`에 최신 데이터를 생성합니다.
 4. **분석 실행:**
-    - **프롬프트 구조:** `[Persona] + [Skill] + [Data]`
-    - `Data`를 `Skill` 지침에 따라 처리하되, `Persona`의 관점으로 필터링하여 분석합니다.
+    - **프롬프트 구조:** `[Persona] + [Instruction] + [Data]`
+    - `Data`를 `Instruction` 지침에 따라 처리하되, `Persona`의 관점으로 필터링하여 분석합니다.
 5. **결과물 출력:**
     - 최종 결과물 생성 (주로 `_posts/`에 포스팅 파일로 저장하거나 `data/processed/`에 요약 저장).
 
