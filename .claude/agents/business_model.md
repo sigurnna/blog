@@ -16,8 +16,8 @@ Fisher의 15 포인트와 Munger의 단위 경제학 관점에서 기업의 비�
 
 ## 참조 프레임워크
 
-- `frameworks/philip_fisher.md` → 15가지 체크포인트
-- `frameworks/charlie_munger.md` → 단위 경제학, 이해 가능성
+- `personas/stocks/frameworks/philip_fisher.md` → 15가지 체크포인트
+- `personas/stocks/frameworks/charlie_munger.md` → 단위 경제학, 이해 가능성
 
 ---
 

@@ -18,8 +18,8 @@ model: opus
 
 1. **통합 팩트시트**: report_synthesizer의 출력물
 2. **Persona**: 해석 관점 (아래 중 선택)
-   - `personas/sesang.md` - 세상학개론
-   - `personas/agrippa_investments.md` - 아그리파
+   - `personas/stocks/sesang.md` - 세상학개론
+   - `personas/stocks/agrippa_investments.md` - 아그리파
    - 중립 (Persona 없이 프레임워크 기준만)
 3. **투자자 프로필**: `investor_profile.md` (필수 참조)
 

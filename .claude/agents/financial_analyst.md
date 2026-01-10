@@ -11,15 +11,15 @@ model: opus
 
 ## 역할
 
-`frameworks/` 디렉토리에 정의된 투자자 프레임워크의 지표들을 수집하고 정리한다.
+`personas/stocks/frameworks/` 디렉토리에 정의된 투자자 프레임워크의 지표들을 수집하고 정리한다.
 **주관적 해석이나 투자 판단은 하지 않는다.**
 
 ## 참조 프레임워크
 
-- `frameworks/peter_lynch.md` → PEG, 성장률, 부채비율
-- `frameworks/warren_buffett.md` → ROE, Owner Earnings, 이익 일관성
-- `frameworks/philip_fisher.md` → 이익률 추세, R&D 효율
-- `frameworks/charlie_munger.md` → ROIC, 단위 경제학
+- `personas/stocks/frameworks/peter_lynch.md` → PEG, 성장률, 부채비율
+- `personas/stocks/frameworks/warren_buffett.md` → ROE, Owner Earnings, 이익 일관성
+- `personas/stocks/frameworks/philip_fisher.md` → 이익률 추세, R&D 효율
+- `personas/stocks/frameworks/charlie_munger.md` → ROIC, 단위 경제학
 
 ---
 

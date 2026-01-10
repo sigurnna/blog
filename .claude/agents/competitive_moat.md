@@ -16,9 +16,9 @@ Buffett/Munger의 해자 프레임워크와 Fisher의 경쟁력 관점에서 기
 
 ## 참조 프레임워크
 
-- `frameworks/warren_buffett.md` → 해자, 가격 결정력
-- `frameworks/charlie_munger.md` → 해자 유형, 지속 가능성
-- `frameworks/philip_fisher.md` → 산업 내 탁월함 (#11)
+- `personas/stocks/frameworks/warren_buffett.md` → 해자, 가격 결정력
+- `personas/stocks/frameworks/charlie_munger.md` → 해자 유형, 지속 가능성
+- `personas/stocks/frameworks/philip_fisher.md` → 산업 내 탁월함 (#11)
 
 ---
 

@@ -24,12 +24,6 @@
 ├── investor_profile.md       # 투자자 성향
 ├── portfolios.md             # 보유 자산
 │
-├── frameworks/               # 투자자 프레임워크
-│   ├── peter_lynch.md        # PEG, 성장률, GARP
-│   ├── warren_buffett.md     # ROE, Owner Earnings, 해자
-│   ├── philip_fisher.md      # 15포인트, 정성적 분석
-│   └── charlie_munger.md     # ROIC, 멘탈모델, 역발상
-│
 ├── agents/                   # 팩트 수집 Agent (해석 안함)
 │   ├── financial_analyst.md  # 재무 지표 수집
 │   ├── business_model.md     # 비즈니스 모델 분석
@@ -39,17 +33,26 @@
 │   └── investment_interpreter.md  # Persona 기반 해석
 │
 ├── personas/                 # 해석 관점
-│   ├── sesang.md             # 세상학개론 (내러티브+유동성)
-│   ├── agrippa_investments.md # 아그리파 (인프라 자산)
-│   ├── michael_burry.md      # Michael Burry (역발상+Deep Value)
-│   ├── terry_smith.md        # Terry Smith (품질 복리)
-│   ├── stanley_druckenmiller.md # Druckenmiller (매크로+타이밍)
-│   └── bill_ackman.md        # Bill Ackman (행동주의+집중)
-│
-├── workflows/                # 워크플로우
-│   └── deep_dive.md          # 심층 분석 프로세스
+│   ├── stocks/               # 주식 투자 페르소나
+│   │   ├── sesang.md             # 세상학개론 (내러티브+유동성)
+│   │   ├── agrippa_investments.md # 아그리파 (인프라 자산)
+│   │   ├── michael_burry.md      # Michael Burry (역발상+Deep Value)
+│   │   ├── terry_smith.md        # Terry Smith (품질 복리)
+│   │   ├── stanley_druckenmiller.md # Druckenmiller (매크로+타이밍)
+│   │   ├── bill_ackman.md        # Bill Ackman (행동주의+집중)
+│   │   │
+│   │   └── frameworks/           # 근간 프레임워크 (특별 취급)
+│   │       ├── peter_lynch.md        # PEG, 성장률, GARP
+│   │       ├── warren_buffett.md     # ROE, Owner Earnings, 해자
+│   │       ├── philip_fisher.md      # 15포인트, 정성적 분석
+│   │       └── charlie_munger.md     # ROIC, 멘탈모델, 역발상
+│   │
+│   └── crypto/               # 암호화폐 페르소나
+│       └── oh_taemin.md          # 오태민 (비트코인 화폐철학+지정학)
 │
 └── commands/                 # Skill 커맨드
+    ├── deep_dive.md              # 심층 분석 프로세스
+    ├── earnings_flash.md         # 실적 발표 직후 빠른 분석
     └── discover_hidden_gems_from_x.md
 
 reports/                          # 분석 리포트 저장
@@ -88,7 +91,7 @@ reports/                          # 분석 리포트 저장
     └─ 투표 결과, 컨센서스, 논쟁점 정리
 ```
 
-상세: `.claude/workflows/deep_dive.md`
+상세: `.claude/commands/deep_dive.md`
 
 ## 사용 예시
 
@@ -113,6 +116,9 @@ reports/                          # 분석 리포트 저장
 
 "Bill Ackman 관점으로 분석해줘"
 → 행동주의/촉매 관점 분석
+
+"/earnings-flash IREN FY25Q2"
+→ 실적 발표 직후 빠른 분석 + 액션 판단
 ```
 
 ## Persona 요약

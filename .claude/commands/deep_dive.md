@@ -78,12 +78,12 @@ description: 특정 종목에 대한 심층 분석 워크플로우. 4개 Agent�
 
 | Persona | 파일 | 관점 | 핵심 질문 |
 |---------|------|------|----------|
-| 세상학개론 | `personas/sesang.md` | 내러티브 + 유동성 | "시대의 병목을 해결하는가?" |
-| 아그리파 | `personas/agrippa_investments.md` | 인프라 자산 | "숨겨진 자산 가치가 있는가?" |
-| Michael Burry | `personas/michael_burry.md` | 역발상 + Deep Value | "이게 버블 아닌가?" |
-| Terry Smith | `personas/terry_smith.md` | 품질 복리 | "10년 보유할 기업인가?" |
-| Druckenmiller | `personas/stanley_druckenmiller.md` | 매크로 + 타이밍 | "지금 진입 시점이 맞는가?" |
-| Bill Ackman | `personas/bill_ackman.md` | 행동주의 + 집중 | "가치를 끌어올릴 촉매가 있는가?" |
+| 세상학개론 | `personas/stocks/sesang.md` | 내러티브 + 유동성 | "시대의 병목을 해결하는가?" |
+| 아그리파 | `personas/stocks/agrippa_investments.md` | 인프라 자산 | "숨겨진 자산 가치가 있는가?" |
+| Michael Burry | `personas/stocks/michael_burry.md` | 역발상 + Deep Value | "이게 버블 아닌가?" |
+| Terry Smith | `personas/stocks/terry_smith.md` | 품질 복리 | "10년 보유할 기업인가?" |
+| Druckenmiller | `personas/stocks/stanley_druckenmiller.md` | 매크로 + 타이밍 | "지금 진입 시점이 맞는가?" |
+| Bill Ackman | `personas/stocks/bill_ackman.md` | 행동주의 + 집중 | "가치를 끌어올릴 촉매가 있는가?" |
 
 **입력**:
 - 2단계의 통합 팩트시트
@@ -260,22 +260,22 @@ Persona 간 의견이 갈리는 핵심 이슈:
 
 ## 파일 참조
 
-### Frameworks (투자자 프레임워크)
-- `frameworks/peter_lynch.md`
-- `frameworks/warren_buffett.md`
-- `frameworks/philip_fisher.md`
-- `frameworks/charlie_munger.md`
+### Frameworks (근간 프레임워크)
+- `personas/stocks/frameworks/peter_lynch.md`
+- `personas/stocks/frameworks/warren_buffett.md`
+- `personas/stocks/frameworks/philip_fisher.md`
+- `personas/stocks/frameworks/charlie_munger.md`
 
 ### Personas (해석 관점)
 
 | 유형 | Persona | 파일 |
 |------|---------|------|
-| 공격 | 세상학개론 | `personas/sesang.md` |
-| 공격 | 아그리파 | `personas/agrippa_investments.md` |
-| 방어 | Michael Burry | `personas/michael_burry.md` |
-| 방어 | Terry Smith | `personas/terry_smith.md` |
-| 매크로 | Druckenmiller | `personas/stanley_druckenmiller.md` |
-| 촉매 | Bill Ackman | `personas/bill_ackman.md` |
+| 공격 | 세상학개론 | `personas/stocks/sesang.md` |
+| 공격 | 아그리파 | `personas/stocks/agrippa_investments.md` |
+| 방어 | Michael Burry | `personas/stocks/michael_burry.md` |
+| 방어 | Terry Smith | `personas/stocks/terry_smith.md` |
+| 매크로 | Druckenmiller | `personas/stocks/stanley_druckenmiller.md` |
+| 촉매 | Bill Ackman | `personas/stocks/bill_ackman.md` |
 
 ### 투자자 프로필
 - `investor_profile.md` - 10배 성장주, 집중투자

@@ -16,8 +16,8 @@ model: opus
 
 ## 참조 프레임워크
 
-- `frameworks/peter_lynch.md` → 기업 분류 (Cyclical 등)
-- `frameworks/charlie_munger.md` → 산업 구조, 리스크
+- `personas/stocks/frameworks/peter_lynch.md` → 기업 분류 (Cyclical 등)
+- `personas/stocks/frameworks/charlie_munger.md` → 산업 구조, 리스크
 
 ---
 
