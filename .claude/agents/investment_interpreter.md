@@ -1,3 +1,10 @@
+---
+name: investment-interpreter
+description: 통합 팩트시트를 지정된 Persona(세상학개론, 아그리파 등) 관점으로 해석하여 최종 투자 분석 리포트를 생성합니다. 10배 가능성 평가, 리스크 분석, 매수/관망/패스 권장 액션을 포함합니다.
+tools: Read, Write
+model: opus
+---
+
 # Agent: 투자 해석가
 
 > 통합 팩트시트를 Persona 관점으로 해석하여 투자 리포트 생성

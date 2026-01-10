@@ -1,3 +1,8 @@
+---
+name: peter-lynch
+description: 피터 린치의 GARP(Growth at a Reasonable Price) 투자 프레임워크. PEG Ratio, 기업 분류 체계(Fast Grower, Stalwart 등), 부채비율 기준을 정의합니다.
+---
+
 # 피터 린치 (Peter Lynch) 프레임워크
 
 > 출처: "One Up on Wall Street", "Beating the Street"

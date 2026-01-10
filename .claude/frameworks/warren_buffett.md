@@ -1,3 +1,8 @@
+---
+name: warren-buffett
+description: 워렌 버핏의 가치 투자 프레임워크. ROE, Owner Earnings, 해자(Moat) 분석, 안전마진 기준을 정의합니다. 훌륭한 기업을 적정 가격에 매수하는 철학.
+---
+
 # 워렌 버핏 (Warren Buffett) 프레임워크
 
 > 출처: Berkshire Hathaway 주주서한, "The Essays of Warren Buffett"

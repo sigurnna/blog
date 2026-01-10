@@ -40,7 +40,11 @@
 │
 ├── personas/                 # 해석 관점
 │   ├── sesang.md             # 세상학개론 (내러티브+유동성)
-│   └── agrippa_investments.md # 아그리파 (인프라 자산)
+│   ├── agrippa_investments.md # 아그리파 (인프라 자산)
+│   ├── michael_burry.md      # Michael Burry (역발상+Deep Value)
+│   ├── terry_smith.md        # Terry Smith (품질 복리)
+│   ├── stanley_druckenmiller.md # Druckenmiller (매크로+타이밍)
+│   └── bill_ackman.md        # Bill Ackman (행동주의+집중)
 │
 ├── workflows/                # 워크플로우
 │   └── deep_dive.md          # 심층 분석 프로세스
@@ -48,10 +52,16 @@
 └── commands/                 # Skill 커맨드
     └── discover_hidden_gems_from_x.md
 
-data/
-├── raw/                      # 원본 데이터
-└── processed/                # 분석 리포트 저장
-    └── YYYY-MM-DD_[티커]_[persona].md
+reports/                          # 분석 리포트 저장
+└── [티커]/
+    └── YYYY-MM-DD/
+        ├── 1_financial.md        # 재무 팩트시트
+        ├── 2_business.md         # 비즈니스 모델 팩트시트
+        ├── 3_moat.md             # 경쟁 우위 팩트시트
+        ├── 4_macro.md            # 매크로 팩트시트
+        ├── 5_synthesized.md      # 통합 팩트시트
+        ├── 6_[persona].md        # Persona별 해석 (6개)
+        └── 7_final.md            # 중립 종합 리포트
 ```
 
 ## Deep Dive 워크플로우
@@ -66,8 +76,16 @@ data/
 [2단계: 통합] - 별도 Agent
     └─ report_synthesizer
               │
-[3단계: 해석] - 별도 Agent + Persona
-    └─ investment_interpreter
+[3단계: 다각도 해석] - 6개 Persona 병렬
+    ├─ 세상학개론 (공격/내러티브)
+    ├─ 아그리파 (공격/인프라)
+    ├─ Michael Burry (방어/역발상)
+    ├─ Terry Smith (방어/품질)
+    ├─ Druckenmiller (매크로/타이밍)
+    └─ Bill Ackman (촉매/행동주의)
+              │
+[4단계: 중립 종합] - Persona 없이 집계
+    └─ 투표 결과, 컨센서스, 논쟁점 정리
 ```
 
 상세: `.claude/workflows/deep_dive.md`
@@ -76,14 +94,37 @@ data/
 
 ```
 "IREN deep dive 해줘"
-→ 전체 워크플로우 실행
+→ 전체 워크플로우 실행 (기본: 세상학개론 관점)
 
 "세상학개론 관점으로 분석해줘"
 → Persona 지정
 
 "아그리파 관점으로도 봐줘"
 → 기존 팩트시트 + 다른 Persona로 재해석
+
+"Michael Burry 관점으로 리스크 체크해줘"
+→ 역발상/버블 관점 분석
+
+"Terry Smith 관점으로 품질 평가해줘"
+→ 장기 복리 관점 분석
+
+"Druckenmiller 관점으로 타이밍 봐줘"
+→ 매크로 환경 분석
+
+"Bill Ackman 관점으로 분석해줘"
+→ 행동주의/촉매 관점 분석
 ```
+
+## Persona 요약
+
+| Persona | 관점 | 핵심 질문 |
+|---------|------|----------|
+| 세상학개론 | 내러티브 + 유동성 | "시대의 병목을 해결하는가?" |
+| 아그리파 | 인프라 자산 | "숨겨진 자산 가치가 있는가?" |
+| Michael Burry | 역발상 + Deep Value | "이게 버블 아닌가?" |
+| Terry Smith | 품질 복리 | "10년 보유할 기업인가?" |
+| Druckenmiller | 매크로 + 타이밍 | "지금 진입 시점이 맞는가?" |
+| Bill Ackman | 행동주의 + 집중 | "가치를 끌어올릴 촉매가 있는가?" |
 
 ## 프레임워크 요약
 

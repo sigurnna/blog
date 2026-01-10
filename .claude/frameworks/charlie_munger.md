@@ -1,3 +1,8 @@
+---
+name: charlie-munger
+description: 찰리 멍거의 멀티 디시플린 투자 프레임워크. ROIC, 4가지 필터, 해자 분석, 역발상(Inversion) 사고법을 정의합니다.
+---
+
 # 찰리 멍거 (Charlie Munger) 프레임워크
 
 > 출처: "Poor Charlie's Almanack", Berkshire/Daily Journal 연례 미팅

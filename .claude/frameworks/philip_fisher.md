@@ -1,3 +1,8 @@
+---
+name: philip-fisher
+description: 필립 피셔의 성장주 투자 프레임워크. 15가지 체크포인트, Scuttlebutt(발품 조사), R&D 효율성, 경영진 깊이 분석 기준을 정의합니다.
+---
+
 # 필립 피셔 (Philip Fisher) 프레임워크
 
 > 출처: "Common Stocks and Uncommon Profits" (1958)
