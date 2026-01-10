@@ -27,4 +27,4 @@ _sass/vendors
 assets/js/dist
 
 # Sensitive Data
-.agent/portfolios.md
+.claude/portfolios.md
