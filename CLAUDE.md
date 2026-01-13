@@ -35,9 +35,10 @@
 ├── personas/                 # 해석 관점
 │   ├── stocks/               # 주식 투자 페르소나
 │   │   ├── sesang.md             # 세상학개론 (내러티브+유동성)
-│   │   ├── agrippa_investments.md # 아그리파 (인프라 자산)
+│   │   ├── cathie_wood.md        # Cathie Wood (파괴적 혁신)
 │   │   ├── michael_burry.md      # Michael Burry (역발상+Deep Value)
 │   │   ├── terry_smith.md        # Terry Smith (품질 복리)
+│   │   ├── howard_marks.md       # Howard Marks (사이클+리스크)
 │   │   ├── stanley_druckenmiller.md # Druckenmiller (매크로+타이밍)
 │   │   ├── bill_ackman.md        # Bill Ackman (행동주의+집중)
 │   │   │
@@ -53,18 +54,29 @@
 └── commands/                 # Skill 커맨드
     ├── deep_dive.md              # 심층 분석 프로세스
     ├── earnings_flash.md         # 실적 발표 직후 빠른 분석
-    └── discover_hidden_gems_from_x.md
+    ├── discover_hidden_gems_from_x.md
+    └── sector_battle.md          # 섹터 내 페르소나 배틀
 
 reports/                          # 분석 리포트 저장
-└── [티커]/
-    └── YYYY-MM-DD/
-        ├── 1_financial.md        # 재무 팩트시트
-        ├── 2_business.md         # 비즈니스 모델 팩트시트
-        ├── 3_moat.md             # 경쟁 우위 팩트시트
-        ├── 4_macro.md            # 매크로 팩트시트
-        ├── 5_synthesized.md      # 통합 팩트시트
-        ├── 6_[persona].md        # Persona별 해석 (6개)
-        └── 7_final.md            # 중립 종합 리포트
+├── [티커]/                       # Deep Dive 결과
+│   └── YYYY-MM-DD/
+│       ├── 1_financial.md        # 재무 팩트시트
+│       ├── 2_business.md         # 비즈니스 모델 팩트시트
+│       ├── 3_moat.md             # 경쟁 우위 팩트시트
+│       ├── 4_macro.md            # 매크로 팩트시트
+│       ├── 5_synthesized.md      # 통합 팩트시트
+│       ├── 6_[persona].md        # Persona별 해석 (6개)
+│       └── 7_final.md            # 중립 종합 리포트
+│
+└── battles/                      # Sector Battle 결과
+    └── [섹터-슬러그]/
+        └── YYYY-MM-DD_HH-MM-SS/
+            ├── 0_config.md       # 배틀 설정
+            ├── 1_picks.md        # 1라운드: 선택
+            ├── 2_attacks.md      # 2라운드: 공격
+            ├── 3_rebuttals.md    # 3라운드: 반론
+            ├── 4_votes.md        # 4라운드: 투표
+            └── 5_final.md        # 최종 결과
 ```
 
 ## Deep Dive 워크플로우
@@ -79,11 +91,12 @@ reports/                          # 분석 리포트 저장
 [2단계: 통합] - 별도 Agent
     └─ report_synthesizer
               │
-[3단계: 다각도 해석] - 6개 Persona 병렬
+[3단계: 다각도 해석] - 7개 Persona 병렬
     ├─ 세상학개론 (공격/내러티브)
-    ├─ 아그리파 (공격/인프라)
+    ├─ Cathie Wood (공격/파괴적 혁신)
     ├─ Michael Burry (방어/역발상)
     ├─ Terry Smith (방어/품질)
+    ├─ Howard Marks (방어/사이클)
     ├─ Druckenmiller (매크로/타이밍)
     └─ Bill Ackman (촉매/행동주의)
               │
@@ -92,6 +105,41 @@ reports/                          # 분석 리포트 저장
 ```
 
 상세: `.claude/commands/deep_dive.md`
+
+## Sector Battle 워크플로우
+
+```
+/sector-battle "AI 데이터센터"
+
+[0단계: 초기화]
+    └─ .claude/personas/stocks/*.md 스캔 (frameworks/ 제외)
+    └─ 저장 디렉토리 생성: reports/battles/[섹터]/[타임스탬프]/
+              │
+[1라운드: 선택] - N개 Persona 병렬 (각자 독립 Agent)
+    ├─ 세상학개론 → "IREN"
+    ├─ Cathie Wood → "TSLA"
+    ├─ Burry → "PASS"
+    ├─ Smith → "PASS"
+    ├─ Howard Marks → "조건부 IREN"
+    ├─ Druckenmiller → "NVDA"
+    └─ Ackman → "EQIX"
+              │
+[2라운드: 공격] - N개 Persona 병렬 (각자 독립 Agent)
+    └─ 다른 페르소나의 선택을 비판
+              │
+[3라운드: 반론] - N개 Persona 병렬 (각자 독립 Agent)
+    └─ 자신에게 온 공격에 반박
+              │
+[4라운드: 투표] - N개 Persona 병렬 (각자 독립 Agent)
+    └─ 본인 제외 1표 행사 + 패배 승복
+              │
+[5단계: 집계] - 중립 Agent (페르소나 없음)
+    └─ 승자 선정 + 핵심 논쟁 정리
+```
+
+**핵심 원칙**: 1 페르소나 = 1 Agent (컨텍스트 격리)
+
+상세: `.claude/commands/sector_battle.md`
 
 ## 사용 예시
 
@@ -119,6 +167,10 @@ reports/                          # 분석 리포트 저장
 
 "/earnings-flash IREN FY25Q2"
 → 실적 발표 직후 빠른 분석 + 액션 판단
+
+"/sector-battle AI 데이터센터"
+→ 페르소나들이 섹터 내 최고 종목 선택 후 배틀
+→ 4라운드 (선택→공격→반론→투표) 거쳐 승자 결정
 ```
 
 ## Persona 요약
@@ -126,9 +178,10 @@ reports/                          # 분석 리포트 저장
 | Persona | 관점 | 핵심 질문 |
 |---------|------|----------|
 | 세상학개론 | 내러티브 + 유동성 | "시대의 병목을 해결하는가?" |
-| 아그리파 | 인프라 자산 | "숨겨진 자산 가치가 있는가?" |
+| Cathie Wood | 파괴적 혁신 | "5년 후 세상을 바꿀 기술인가?" |
 | Michael Burry | 역발상 + Deep Value | "이게 버블 아닌가?" |
 | Terry Smith | 품질 복리 | "10년 보유할 기업인가?" |
+| Howard Marks | 사이클 + 리스크 | "지금 사이클 어디인가?" |
 | Druckenmiller | 매크로 + 타이밍 | "지금 진입 시점이 맞는가?" |
 | Bill Ackman | 행동주의 + 집중 | "가치를 끌어올릴 촉매가 있는가?" |
 

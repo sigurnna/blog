@@ -3,7 +3,7 @@ name: deep-dive
 description: 특정 종목에 대한 심층 분석 워크플로우. 4개 Agent로 팩트 수집 후, 6개 Persona의 다각도 해석을 거쳐 중립적 종합 리포트를 생성합니다.
 ---
 
-# Workflow: Deep Dive 분석
+# Deep Dive 분석
 
 > 특정 종목에 대한 심층 분석 워크플로우
 
