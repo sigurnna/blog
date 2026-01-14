@@ -16,6 +16,7 @@
 1. **환각 금지**: 주가/뉴스 지어내지 마라. 데이터 없으면 요청하라
 2. **컨텍스트 분리**: 각 Agent는 독립 실행, 결과만 전달
 3. **팩트와 해석 분리**: Agent는 팩트 수집, Persona만 해석
+4. **존댓말 사용**: 사용자에게 항상 존댓말로 응대할 것. 반말 금지.
 
 ## 디렉토리 구조
 
@@ -71,12 +72,14 @@ reports/                          # 분석 리포트 저장
 └── battles/                      # Sector Battle 결과
     └── [섹터-슬러그]/
         └── YYYY-MM-DD_HH-MM-SS/
-            ├── 0_config.md       # 배틀 설정
-            ├── 1_picks.md        # 1라운드: 선택
-            ├── 2_attacks.md      # 2라운드: 공격
-            ├── 3_rebuttals.md    # 3라운드: 반론
-            ├── 4_votes.md        # 4라운드: 투표
-            └── 5_final.md        # 최종 결과
+            ├── 0_config.md       # 배틀 설정 + 대진표
+            ├── 1_picks.md        # 1라운드: 전체 선택
+            ├── 2_preliminary/    # 2라운드: 종목별 예선
+            │   └── [종목]_*.md   # 예선 데스매치 기록
+            ├── 3_semifinal/      # 3라운드: 4강
+            │   └── match*.md     # 4강 데스매치 기록
+            ├── 4_final.md        # 4라운드: 결승
+            └── 5_summary.md      # 최종 결과
 ```
 
 ## Deep Dive 워크플로우
@@ -106,7 +109,7 @@ reports/                          # 분석 리포트 저장
 
 상세: `.claude/commands/deep_dive.md`
 
-## Sector Battle 워크플로우
+## Sector Battle 워크플로우 (토너먼트)
 
 ```
 /sector-battle "AI 데이터센터"
@@ -115,29 +118,28 @@ reports/                          # 분석 리포트 저장
     └─ .claude/personas/stocks/*.md 스캔 (frameworks/ 제외)
     └─ 저장 디렉토리 생성: reports/battles/[섹터]/[타임스탬프]/
               │
-[1라운드: 선택] - N개 Persona 병렬 (각자 독립 Agent)
-    ├─ 세상학개론 → "IREN"
-    ├─ Cathie Wood → "TSLA"
-    ├─ Burry → "PASS"
-    ├─ Smith → "PASS"
-    ├─ Howard Marks → "조건부 IREN"
-    ├─ Druckenmiller → "NVDA"
-    └─ Ackman → "EQIX"
+[1라운드: 선택] - N개 Persona 병렬
+    ├─ 각 페르소나가 섹터 내 최선의 종목 1개 선택
+    └─ 대진표 생성 (같은 종목 → 예선 그룹)
               │
-[2라운드: 공격] - N개 Persona 병렬 (각자 독립 Agent)
-    └─ 다른 페르소나의 선택을 비판
+[2라운드: 종목별 예선] - 데스매치 (최대 5턴)
+    ├─ 같은 종목 선택자끼리 1:1 토너먼트
+    ├─ 확신도 3 이하 = KO, 5턴 후 높은 쪽 = 판정승
+    └─ 각 종목별 대표 1명 선출
               │
-[3라운드: 반론] - N개 Persona 병렬 (각자 독립 Agent)
-    └─ 자신에게 온 공격에 반박
+[3라운드: 4강] - 데스매치
+    └─ 종목 대표끼리 1:1 대결
               │
-[4라운드: 투표] - N개 Persona 병렬 (각자 독립 Agent)
-    └─ 본인 제외 1표 행사 + 패배 승복
+[4라운드: 결승] - 데스매치
+    └─ 4강 승자끼리 최종 결승
               │
-[5단계: 집계] - 중립 Agent (페르소나 없음)
-    └─ 승자 선정 + 핵심 논쟁 정리
+[5단계: 집계]
+    └─ 토너먼트 결과 정리 + 명경기 하이라이트
 ```
 
-**핵심 원칙**: 1 페르소나 = 1 Agent (컨텍스트 격리)
+**핵심 원칙**:
+- 1 페르소나 = 1 Agent (컨텍스트 격리)
+- 확신도 변화 있을 때까지 싸움 (최대 5턴)
 
 상세: `.claude/commands/sector_battle.md`
 
