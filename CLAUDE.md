@@ -31,7 +31,13 @@
 │   ├── competitive_moat.md   # 경쟁 우위/해자 분석
 │   ├── macro_analyst.md      # 매크로/산업 분석
 │   ├── report_synthesizer.md # 팩트시트 통합
-│   └── investment_interpreter.md  # Persona 기반 해석
+│   ├── investment_interpreter.md  # Persona 기반 해석
+│   │
+│   │   # Onboarding 전용 Agent
+│   ├── primary_source_researcher.md  # 1차 자료 심층 조사
+│   ├── management_profiler.md        # 경영진 프로파일링
+│   ├── narrative_researcher.md       # 내러티브/시대적 맥락
+│   └── onboarding_writer.md          # 서술형 Article 작성
 │
 ├── personas/                 # 해석 관점
 │   ├── stocks/               # 주식 투자 페르소나
@@ -54,12 +60,16 @@
 │
 └── commands/                 # Skill 커맨드
     ├── deep_dive.md              # 심층 분석 프로세스
+    ├── onboarding.md             # 기업 완전 정복 가이드 (입문자용)
     ├── earnings_flash.md         # 실적 발표 직후 빠른 분석
     ├── discover_hidden_gems_from_x.md
     ├── sector_battle.md          # 섹터 내 페르소나 배틀
     ├── coach.md                  # 세상학개론 코치 (소크라테스식)
     ├── challenge.md              # Devil's Advocate (7개 페르소나 반론)
     └── thesis_check.md           # Thesis 유효성 빠른 점검
+
+docs/                             # 사용자 참고 문서
+└── financial_glossary.md         # 재무 용어집 (ROE, ROIC, PEG 등)
 
 research/                         # 리서치 중인 종목 (thesis 작업용)
 ├── [티커]/
@@ -69,14 +79,16 @@ research/                         # 리서치 중인 종목 (thesis 작업용)
 
 reports/                          # 분석 리포트 저장 (정제된 결과물)
 ├── [티커]/                       # Deep Dive 결과
-│   └── YYYY-MM-DD/
-│       ├── 1_financial.md        # 재무 팩트시트
-│       ├── 2_business.md         # 비즈니스 모델 팩트시트
-│       ├── 3_moat.md             # 경쟁 우위 팩트시트
-│       ├── 4_macro.md            # 매크로 팩트시트
-│       ├── 5_synthesized.md      # 통합 팩트시트
-│       ├── 6_[persona].md        # Persona별 해석 (6개)
-│       └── 7_final.md            # 중립 종합 리포트
+│   ├── YYYY-MM-DD/
+│   │   ├── 1_financial.md        # 재무 팩트시트
+│   │   ├── 2_business.md         # 비즈니스 모델 팩트시트
+│   │   ├── 3_moat.md             # 경쟁 우위 팩트시트
+│   │   ├── 4_macro.md            # 매크로 팩트시트
+│   │   ├── 5_synthesized.md      # 통합 팩트시트
+│   │   ├── 6_[persona].md        # Persona별 해석 (7개)
+│   │   └── 7_final.md            # 중립 종합 리포트
+│   │
+│   └── onboarding_YYYY-MM-DD.md  # 기업 완전 정복 가이드
 │
 └── battles/                      # Sector Battle 결과
     └── [섹터-슬러그]/
@@ -117,6 +129,42 @@ reports/                          # 분석 리포트 저장 (정제된 결과물
 ```
 
 상세: `.claude/commands/deep_dive.md`
+
+## Onboarding 워크플로우 (기업 완전 정복)
+
+```
+/onboarding [티커]
+
+[1단계: 기초 조사] - 기존 Agent (간소화)
+    ├─ business_model (light) → 사업 개요
+    └─ macro_analyst (light) → 산업 개요
+              │
+[2단계: 심층 조사] - 신규 Agent 3개 병렬
+    ├─ primary_source_researcher → SEC 10-K, Earnings Call
+    ├─ management_profiler → 경영진 트랙레코드
+    └─ narrative_researcher → 시대적 맥락, 숨겨진 신호
+              │
+[3단계: Article 작성]
+    └─ onboarding_writer → 10-30분 분량 서술형 Article
+              │
+[출력]
+    └─ reports/[티커]/onboarding_YYYY-MM-DD.md
+```
+
+**핵심 원칙**:
+- 팩트시트가 아닌 **스토리텔링** 형태
+- 처음 접하는 사람도 이해 가능 (용어집 포함)
+- **흥신소 수준**의 깊이 (1차 자료 기반)
+- 투자 권유 없이 중립적 톤
+
+**deep_dive와 차이점**:
+| 구분 | deep_dive | onboarding |
+|------|-----------|------------|
+| 목적 | 투자 판단 | 기업 이해 |
+| 형태 | 팩트시트 + Persona | 서술형 Article |
+| 대상 | 이미 아는 기업 | 처음 접하는 기업 |
+
+상세: `.claude/commands/onboarding.md`
 
 ## Sector Battle 워크플로우 (토너먼트)
 
@@ -191,6 +239,10 @@ thesis 수정/강화        # 3단계: 반론 반영하여 보강
 ## 사용 예시
 
 ```
+"/onboarding RKLB"
+→ RKLB 완전 정복 가이드 생성 (처음 접하는 기업용)
+→ 10-30분 분량 서술형 Article + 용어집
+
 "IREN deep dive 해줘"
 → 전체 워크플로우 실행 (기본: 세상학개론 관점)
 
@@ -255,3 +307,5 @@ thesis 수정/강화        # 3단계: 반론 반영하여 보강
 | Buffett | ROE 지속 ≥ 15%, Owner Earnings, 해자 |
 | Fisher | 이익률 개선, R&D, 경영진 깊이 |
 | Munger | ROIC > 15%, 이해 가능, FCF 전환 |
+
+재무 지표 상세: `docs/financial_glossary.md`
