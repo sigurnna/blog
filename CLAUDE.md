@@ -56,9 +56,18 @@
     ├── deep_dive.md              # 심층 분석 프로세스
     ├── earnings_flash.md         # 실적 발표 직후 빠른 분석
     ├── discover_hidden_gems_from_x.md
-    └── sector_battle.md          # 섹터 내 페르소나 배틀
+    ├── sector_battle.md          # 섹터 내 페르소나 배틀
+    ├── coach.md                  # 세상학개론 코치 (소크라테스식)
+    ├── challenge.md              # Devil's Advocate (7개 페르소나 반론)
+    └── thesis_check.md           # Thesis 유효성 빠른 점검
 
-reports/                          # 분석 리포트 저장
+research/                         # 리서치 중인 종목 (thesis 작업용)
+├── [티커]/
+│   ├── thesis_YYYY-MM-DD.md      # 코치 모드 결과
+│   ├── challenge_YYYY-MM-DD.md   # 반론 결과
+│   └── check_YYYY-MM-DD.md       # 유효성 점검 결과
+
+reports/                          # 분석 리포트 저장 (정제된 결과물)
 ├── [티커]/                       # Deep Dive 결과
 │   └── YYYY-MM-DD/
 │       ├── 1_financial.md        # 재무 팩트시트
@@ -143,6 +152,42 @@ reports/                          # 분석 리포트 저장
 
 상세: `.claude/commands/sector_battle.md`
 
+## Thesis Building 워크플로우 (투자 근육 키우기)
+
+```
+/coach [티커]           # 1단계: 세상학개론 코치와 thesis 정리
+                        #   - 빈 캔버스에서 시작
+                        #   - 소크라테스식 질문으로 내 생각 유도
+                        #   - "내 말"로 투자 논리 정리
+              │
+              ▼
+/challenge [티커]       # 2단계: 7개 페르소나의 날카로운 반론
+                        #   - 확증 편향 방지
+                        #   - 못 본 리스크 발견
+                        #   - 논리의 약점 노출
+              │
+              ▼
+thesis 수정/강화        # 3단계: 반론 반영하여 보강
+              │
+              ▼
+/thesis-check [티커]    # 4단계: 주기적 유효성 점검
+                        #   - 주가 하락 시 thesis 깨졌는지 확인
+                        #   - HOLD / WATCH / EXIT 판정
+              │
+              ▼
+(반복)
+```
+
+**핵심 원칙**:
+- 답을 주지 않고 **질문**으로 사고 유도
+- 빌려온 철학이 아닌 **내 언어**로 체화
+- 흔들릴 때 **팩트 기반** 점검으로 확신 유지
+
+상세:
+- `.claude/commands/coach.md`
+- `.claude/commands/challenge.md`
+- `.claude/commands/thesis_check.md`
+
 ## 사용 예시
 
 ```
@@ -173,6 +218,21 @@ reports/                          # 분석 리포트 저장
 "/sector-battle AI 데이터센터"
 → 페르소나들이 섹터 내 최고 종목 선택 후 배틀
 → 4라운드 (선택→공격→반론→투표) 거쳐 승자 결정
+
+"/coach IREN"
+→ 세상학개론 코치와 소크라테스식 대화
+→ 빈 캔버스에서 시작, 질문으로 내 thesis 정리
+
+"/challenge IREN"
+→ 7개 페르소나가 내 thesis를 날카롭게 공격
+→ 확증 편향 방지, 약점 발견
+
+"/thesis-check IREN"
+→ 주가 하락 시 thesis 유효성 빠른 점검
+→ HOLD / WATCH / EXIT 판정
+
+"/thesis-check IREN 오늘 -15% 빠졌어"
+→ 특정 이벤트 대응 점검
 ```
 
 ## Persona 요약
