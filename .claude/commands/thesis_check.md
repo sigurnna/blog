@@ -32,7 +32,7 @@ description: Thesis 유효성 빠른 점검. 주가 하락이나 뉴스 발생 �
 /thesis-check [티커] (이유)
 ```
 
-**전제 조건:** `research/[TICKER]/thesis_*.md` 파일이 존재해야 함
+**전제 조건:** `research/[TICKER]/thesis.md` 파일이 존재해야 함
 
 **예시:**
 ```
@@ -48,7 +48,7 @@ description: Thesis 유효성 빠른 점검. 주가 하락이나 뉴스 발생 �
 
 ```
 [1단계: Thesis 로드]
-    │  research/[TICKER]/thesis_*.md 핵심 포인트 추출
+    │  research/[TICKER]/thesis.md 핵심 포인트 추출
     │  - 투자 논리 (3~5개)
     │  - 리스크 (인지했던 것)
     │  - 매매 기준
@@ -169,7 +169,7 @@ description: Thesis 유효성 빠른 점검. 주가 하락이나 뉴스 발생 �
 
 > 점검일: YYYY-MM-DD
 > 트리거: (주가 하락 / 뉴스 / 정기 점검)
-> 참조 Thesis: thesis_YYYY-MM-DD.md
+> 참조 Thesis: thesis.md
 
 ---
 
@@ -316,7 +316,7 @@ Claude: "판정: HOLD. 지난달 대비 변화 없음."
 
 ## 파일 참조
 
-- `research/[TICKER]/thesis_*.md` - 원본 thesis
+- `research/[TICKER]/thesis.md` - 원본 thesis
 - `research/[TICKER]/challenge_*.md` - 이전 반론 기록 (참고용)
 - `investor_profile.md` - 투자자 성향
 

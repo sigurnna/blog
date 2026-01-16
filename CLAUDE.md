@@ -63,7 +63,7 @@
 
 research/                         # 리서치 중인 종목 (thesis 작업용)
 ├── [티커]/
-│   ├── thesis_YYYY-MM-DD.md      # 코치 모드 결과
+│   ├── thesis.md                 # 코치 모드 결과 (단일 파일, 업데이트 방식)
 │   ├── challenge_YYYY-MM-DD.md   # 반론 결과
 │   └── check_YYYY-MM-DD.md       # 유효성 점검 결과
 

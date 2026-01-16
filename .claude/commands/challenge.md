@@ -31,7 +31,7 @@ description: Devil's Advocate 모드. 7개 페르소나가 사용자의 투자 t
 /challenge [티커]
 ```
 
-**전제 조건:** `research/[TICKER]/thesis_*.md` 파일이 존재해야 함
+**전제 조건:** `research/[TICKER]/thesis.md` 파일이 존재해야 함
 
 없으면: "먼저 /coach [티커]로 thesis를 정리해주세요."
 
@@ -47,7 +47,7 @@ description: Devil's Advocate 모드. 7개 페르소나가 사용자의 투자 t
 
 ```
 [0단계: Thesis 로드]
-    │  research/[TICKER]/thesis_*.md 읽기
+    │  research/[TICKER]/thesis.md 읽기
     │  핵심 논리 추출
     ▼
 [1단계: 7개 페르소나 공격] - 병렬 실행
@@ -172,7 +172,7 @@ description: Devil's Advocate 모드. 7개 페르소나가 사용자의 투자 t
 # [기업명] Thesis Challenge
 
 > 분석일: YYYY-MM-DD
-> 대상 Thesis: thesis_YYYY-MM-DD.md
+> 대상 Thesis: thesis.md
 > 방식: 7개 페르소나 Devil's Advocate
 
 ---
