@@ -25,19 +25,20 @@
 ├── investor_profile.md       # 투자자 성향
 ├── portfolios.md             # 보유 자산
 │
-├── agents/                   # 팩트 수집 Agent (해석 안함)
-│   ├── financial_analyst.md  # 재무 지표 수집
-│   ├── business_model.md     # 비즈니스 모델 분석
-│   ├── competitive_moat.md   # 경쟁 우위/해자 분석
-│   ├── macro_analyst.md      # 매크로/산업 분석
-│   ├── report_synthesizer.md # 팩트시트 통합
-│   ├── investment_interpreter.md  # Persona 기반 해석
+├── agents/                   # 워크플로우별 Agent
+│   ├── deep_dive/            # Deep Dive 워크플로우
+│   │   ├── financial_analyst.md      # 재무 지표 수집
+│   │   ├── business_model.md         # 비즈니스 모델 분석 (onboarding에서도 사용)
+│   │   ├── competitive_moat.md       # 경쟁 우위/해자 분석
+│   │   ├── macro_analyst.md          # 매크로/산업 분석 (onboarding에서도 사용)
+│   │   ├── report_synthesizer.md     # 팩트시트 통합
+│   │   └── investment_interpreter.md # Persona 기반 해석
 │   │
-│   │   # Onboarding 전용 Agent
-│   ├── primary_source_researcher.md  # 1차 자료 심층 조사
-│   ├── management_profiler.md        # 경영진 프로파일링
-│   ├── narrative_researcher.md       # 내러티브/시대적 맥락
-│   └── onboarding_writer.md          # 서술형 Article 작성
+│   └── onboarding/           # Onboarding 전용
+│       ├── primary_source_researcher.md  # 1차 자료 심층 조사
+│       ├── management_profiler.md        # 경영진 프로파일링
+│       ├── narrative_researcher.md       # 내러티브/시대적 맥락
+│       └── onboarding_writer.md          # 서술형 Article 작성
 │
 ├── personas/                 # 해석 관점
 │   ├── stocks/               # 주식 투자 페르소나
