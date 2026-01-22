@@ -72,15 +72,13 @@
 docs/                             # 사용자 참고 문서
 └── financial_glossary.md         # 재무 용어집 (ROE, ROIC, PEG 등)
 
-research/                         # 리서치 중인 종목 (thesis 작업용)
+reports/                          # 모든 분석 결과물 저장
 ├── [티커]/
 │   ├── thesis.md                 # 코치 모드 결과 (단일 파일, 업데이트 방식)
-│   ├── challenge_YYYY-MM-DD.md   # 반론 결과
-│   └── check_YYYY-MM-DD.md       # 유효성 점검 결과
-
-reports/                          # 분석 리포트 저장 (정제된 결과물)
-├── [티커]/                       # Deep Dive 결과
-│   ├── YYYY-MM-DD/
+│   ├── challenge.md              # 반론 결과 (단일 파일, 업데이트 방식)
+│   ├── check_YYYY-MM-DD.md       # 유효성 점검 결과
+│   │
+│   ├── YYYY-MM-DD/               # Deep Dive 결과
 │   │   ├── 1_financial.md        # 재무 팩트시트
 │   │   ├── 2_business.md         # 비즈니스 모델 팩트시트
 │   │   ├── 3_moat.md             # 경쟁 우위 팩트시트
@@ -89,7 +87,7 @@ reports/                          # 분석 리포트 저장 (정제된 결과물
 │   │   ├── 6_[persona].md        # Persona별 해석 (7개)
 │   │   └── 7_final.md            # 중립 종합 리포트
 │   │
-│   └── onboarding_YYYY-MM-DD.md  # 기업 완전 정복 가이드
+│   └── onboarding/               # 기업 완전 정복 가이드 (폴더)
 │
 └── battles/                      # Sector Battle 결과
     └── [섹터-슬러그]/
@@ -149,7 +147,7 @@ reports/                          # 분석 리포트 저장 (정제된 결과물
     └─ onboarding_writer → 10-30분 분량 서술형 Article
               │
 [출력]
-    └─ reports/[티커]/onboarding_YYYY-MM-DD.md
+    └─ reports/[티커]/onboarding/article.md
 ```
 
 **핵심 원칙**:

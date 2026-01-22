@@ -77,7 +77,7 @@ description: 세상학개론 코치 모드. 소크라테스식 질문을 통해 
     │  사용자의 답변을 바탕으로 thesis 초안 제시
     │  "이게 맞나요? 수정할 부분 있으세요?"
     ▼
-저장: research/[TICKER]/thesis.md (단일 파일, 업데이트 방식)
+저장: reports/[TICKER]/thesis.md (단일 파일, 업데이트 방식)
 ```
 
 ---
@@ -189,7 +189,7 @@ description: 세상학개론 코치 모드. 소크라테스식 질문을 통해 
 
 ## 출력 형식
 
-### 저장 파일: `research/[TICKER]/thesis.md`
+### 저장 파일: `reports/[TICKER]/thesis.md`
 
 > **단일 파일 원칙**: 종목당 thesis는 하나만 존재. 내용이 변경되면 동일 파일을 업데이트.
 
@@ -293,7 +293,7 @@ Claude: "저장할까요?"
 ```
 사용자: "/coach IREN 수정"
 
-→ research/IREN/thesis.md 로드
+→ reports/IREN/thesis.md 로드
 → 기존 내용 확인 후 수정할 부분 질문
 → 동일 파일에 업데이트
 ```
