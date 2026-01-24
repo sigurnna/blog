@@ -28,3 +28,6 @@ assets/js/dist
 
 # Sensitive Data
 .claude/portfolios.md
+
+# Temporary task workspace
+.task

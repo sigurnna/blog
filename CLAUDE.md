@@ -15,288 +15,175 @@
 
 1. **환각 금지**: 주가/뉴스 지어내지 마라. 데이터 없으면 요청하라
 2. **컨텍스트 분리**: 각 Agent는 독립 실행, 결과만 전달
-3. **팩트와 해석 분리**: Agent는 팩트 수집, Persona만 해석
+3. **팩트와 해석 분리**: Collector는 팩트 수집, Interpreter만 해석
 4. **존댓말 사용**: 사용자에게 항상 존댓말로 응대할 것. 반말 금지.
+
+## 임시 작업 디렉토리 (.task)
+
+**작업 디렉토리가 명시적으로 지정되지 않은 모든 작업**은 `.task/` 디렉토리에 저장합니다.
+
+### 규칙
+
+1. **위치**: 프로젝트 루트의 `.task/` 디렉토리 (gitignore됨)
+2. **네이밍**: `YYYY-MM-DD_작업이름` 형식의 서브디렉토리 생성
+3. **작업이름**: 영문 소문자, 언더스코어 사용 (예: `debate_cathie_wood`, `research_nvidia`)
+
+### 제외 대상 (기존 경로 사용)
+
+- `/deep-dive` → `reports/[티커]/YYYY-MM-DD/`
+- `/onboarding` → `reports/[티커]/onboarding/`
+- `/coach` → `reports/[티커]/thesis.md`
 
 ## 디렉토리 구조
 
 ```
+.task/                            # 임시 작업 디렉토리 (gitignore)
+└── YYYY-MM-DD_작업이름/          # 날짜+작업명 서브디렉토리
+
 .claude/
 ├── investor_profile.md       # 투자자 성향
 ├── portfolios.md             # 보유 자산
 │
-├── agents/                   # 워크플로우별 Agent
-│   ├── deep_dive/            # Deep Dive 워크플로우
-│   │   ├── financial_analyst.md      # 재무 지표 수집
-│   │   ├── business_model.md         # 비즈니스 모델 분석 (onboarding에서도 사용)
-│   │   ├── competitive_moat.md       # 경쟁 우위/해자 분석
-│   │   ├── macro_analyst.md          # 매크로/산업 분석 (onboarding에서도 사용)
-│   │   ├── report_synthesizer.md     # 팩트시트 통합
-│   │   └── investment_interpreter.md # Persona 기반 해석
+├── agents/                   # Task 도구로 실행되는 Subagent
+│   ├── collectors/           # 팩트 수집 에이전트 (8개)
+│   │   ├── financial.md          # 재무 지표 수집
+│   │   ├── business.md           # 비즈니스 모델 분석
+│   │   ├── moat.md               # 경쟁 우위/해자 분석
+│   │   ├── macro.md              # 매크로/산업 분석
+│   │   ├── primary_source.md     # 1차 자료 심층 조사 (SEC, Earnings Call)
+│   │   ├── management.md         # 경영진 프로파일링
+│   │   └── narrative.md          # 내러티브/시대적 맥락
 │   │
-│   └── onboarding/           # Onboarding 전용
-│       ├── primary_source_researcher.md  # 1차 자료 심층 조사
-│       ├── management_profiler.md        # 경영진 프로파일링
-│       ├── narrative_researcher.md       # 내러티브/시대적 맥락
-│       └── onboarding_writer.md          # 서술형 Article 작성
-│
-├── personas/                 # 해석 관점
-│   ├── stocks/               # 주식 투자 페르소나
-│   │   ├── sesang.md             # 세상학개론 (내러티브+유동성)
-│   │   ├── cathie_wood.md        # Cathie Wood (파괴적 혁신)
-│   │   ├── michael_burry.md      # Michael Burry (역발상+Deep Value)
-│   │   ├── terry_smith.md        # Terry Smith (품질 복리)
-│   │   ├── howard_marks.md       # Howard Marks (사이클+리스크)
-│   │   ├── stanley_druckenmiller.md # Druckenmiller (매크로+타이밍)
-│   │   ├── bill_ackman.md        # Bill Ackman (행동주의+집중)
-│   │   │
-│   │   └── frameworks/           # 근간 프레임워크 (특별 취급)
-│   │       ├── peter_lynch.md        # PEG, 성장률, GARP
-│   │       ├── warren_buffett.md     # ROE, Owner Earnings, 해자
-│   │       ├── philip_fisher.md      # 15포인트, 정성적 분석
-│   │       └── charlie_munger.md     # ROIC, 멘탈모델, 역발상
+│   ├── interpreters/         # Persona 내장 해석 에이전트
+│   │   ├── stocks/               # 주식 투자 (7개)
+│   │   │   ├── sesang.md             # 세상학개론 (내러티브+유동성)
+│   │   │   ├── cathie_wood.md        # Cathie Wood (파괴적 혁신)
+│   │   │   ├── michael_burry.md      # Michael Burry (역발상+Deep Value)
+│   │   │   ├── terry_smith.md        # Terry Smith (품질 복리)
+│   │   │   ├── howard_marks.md       # Howard Marks (사이클+리스크)
+│   │   │   ├── druckenmiller.md      # Druckenmiller (매크로+타이밍)
+│   │   │   └── bill_ackman.md        # Bill Ackman (행동주의+집중)
+│   │   └── crypto/               # 암호화폐 (1개)
+│   │       └── oh_taemin.md          # 오태민 (비트코인 화폐철학+지정학)
 │   │
-│   └── crypto/               # 암호화폐 페르소나
-│       └── oh_taemin.md          # 오태민 (비트코인 화폐철학+지정학)
+│   └── synthesizers/         # 통합/집계 에이전트 (3개)
+│       ├── report_merger.md      # 팩트시트 통합
+│       ├── vote_aggregator.md    # Interpreter 투표 집계
+│       └── onboarding_writer.md  # 서술형 Article 작성
 │
-└── commands/                 # Skill 커맨드
-    ├── deep_dive.md              # 심층 분석 프로세스
-    ├── onboarding.md             # 기업 완전 정복 가이드 (입문자용)
-    ├── earnings_flash.md         # 실적 발표 직후 빠른 분석
-    ├── discover_hidden_gems_from_x.md
-    ├── sector_battle.md          # 섹터 내 페르소나 배틀
-    ├── coach.md                  # 세상학개론 코치 (소크라테스식)
-    ├── challenge.md              # Devil's Advocate (7개 페르소나 반론)
-    └── thesis_check.md           # Thesis 유효성 빠른 점검
+├── skills/                   # Skills (프로그레시브 디스클로저)
+│   ├── deep_dive/            # 심층 분석
+│   │   ├── SKILL.md              # 진입점
+│   │   ├── workflow.md           # 워크플로우 상세
+│   │   └── output-format.md      # 출력 형식
+│   │
+│   ├── onboarding/           # 기업 완전 정복 가이드
+│   │   ├── SKILL.md              # 진입점
+│   │   ├── workflow.md           # 워크플로우 상세
+│   │   ├── search-strategy.md    # 검색 전략
+│   │   └── prompts/              # Agent 프롬프트 템플릿
+│   │
+│   ├── coach/                # 세상학개론 코치
+│   │   ├── SKILL.md              # 진입점
+│   │   ├── flow.md               # 코치 플로우 상세
+│   │   ├── questions.md          # 질문 가이드
+│   │   └── output-format.md      # Thesis 출력 형식
+│   │
+│   └── discover_gems/        # X 기반 종목 발굴
+│       └── SKILL.md              # 진입점
 
-docs/                             # 사용자 참고 문서
-└── financial_glossary.md         # 재무 용어집 (ROE, ROIC, PEG 등)
+docs/                             # 참조 문서
+├── frameworks/                   # 정량적 투자 기준
+│   ├── peter_lynch.md            # PEG, 성장률, GARP
+│   ├── warren_buffett.md         # ROE, Owner Earnings, 해자
+│   ├── philip_fisher.md          # 15포인트, 정성적 분석
+│   └── charlie_munger.md         # ROIC, 멘탈모델, 역발상
+└── financial_glossary.md         # 재무 용어집
 
 reports/                          # 모든 분석 결과물 저장
-├── [티커]/
-│   ├── thesis.md                 # 코치 모드 결과 (단일 파일, 업데이트 방식)
-│   ├── challenge.md              # 반론 결과 (단일 파일, 업데이트 방식)
-│   ├── check_YYYY-MM-DD.md       # 유효성 점검 결과
-│   │
-│   ├── YYYY-MM-DD/               # Deep Dive 결과
-│   │   ├── 1_financial.md        # 재무 팩트시트
-│   │   ├── 2_business.md         # 비즈니스 모델 팩트시트
-│   │   ├── 3_moat.md             # 경쟁 우위 팩트시트
-│   │   ├── 4_macro.md            # 매크로 팩트시트
-│   │   ├── 5_synthesized.md      # 통합 팩트시트
-│   │   ├── 6_[persona].md        # Persona별 해석 (7개)
-│   │   └── 7_final.md            # 중립 종합 리포트
-│   │
-│   └── onboarding/               # 기업 완전 정복 가이드 (폴더)
-│
-└── battles/                      # Sector Battle 결과
-    └── [섹터-슬러그]/
-        └── YYYY-MM-DD_HH-MM-SS/
-            ├── 0_config.md       # 배틀 설정 + 대진표
-            ├── 1_picks.md        # 1라운드: 전체 선택
-            ├── 2_preliminary/    # 2라운드: 종목별 예선
-            │   └── [종목]_*.md   # 예선 데스매치 기록
-            ├── 3_semifinal/      # 3라운드: 4강
-            │   └── match*.md     # 4강 데스매치 기록
-            ├── 4_final.md        # 4라운드: 결승
-            └── 5_summary.md      # 최종 결과
+└── [티커]/
+    ├── thesis.md                 # 코치 모드 결과
+    ├── YYYY-MM-DD/               # Deep Dive 결과
+    │   ├── 1_financial.md        # 재무 팩트시트
+    │   ├── 2_business.md         # 비즈니스 모델 팩트시트
+    │   ├── 3_moat.md             # 경쟁 우위 팩트시트
+    │   ├── 4_macro.md            # 매크로 팩트시트
+    │   ├── 5_synthesized.md      # 통합 팩트시트
+    │   ├── 6_[interpreter].md    # Interpreter별 해석 (7개)
+    │   └── 7_final.md            # 중립 종합 리포트
+    └── onboarding/               # 기업 완전 정복 가이드
 ```
 
 ## Deep Dive 워크플로우
 
 ```
-[1단계: 팩트 수집] - 4개 Agent 병렬
-    ├─ financial_analyst
-    ├─ business_model
-    ├─ competitive_moat
-    └─ macro_analyst
+[1단계: 팩트 수집] - 4개 Collector 병렬
+    ├─ collectors/financial
+    ├─ collectors/business
+    ├─ collectors/moat
+    └─ collectors/macro
               │
-[2단계: 통합] - 별도 Agent
-    └─ report_synthesizer
+[2단계: 통합]
+    └─ synthesizers/report_merger
               │
-[3단계: 다각도 해석] - 7개 Persona 병렬
-    ├─ 세상학개론 (공격/내러티브)
-    ├─ Cathie Wood (공격/파괴적 혁신)
-    ├─ Michael Burry (방어/역발상)
-    ├─ Terry Smith (방어/품질)
-    ├─ Howard Marks (방어/사이클)
-    ├─ Druckenmiller (매크로/타이밍)
-    └─ Bill Ackman (촉매/행동주의)
+[3단계: 다각도 해석] - 7개 Interpreter 병렬
+    ├─ interpreters/stocks/sesang (공격/내러티브)
+    ├─ interpreters/stocks/cathie_wood (공격/파괴적 혁신)
+    ├─ interpreters/stocks/michael_burry (방어/역발상)
+    ├─ interpreters/stocks/terry_smith (방어/품질)
+    ├─ interpreters/stocks/howard_marks (방어/사이클)
+    ├─ interpreters/stocks/druckenmiller (매크로/타이밍)
+    └─ interpreters/stocks/bill_ackman (촉매/행동주의)
               │
-[4단계: 중립 종합] - Persona 없이 집계
-    └─ 투표 결과, 컨센서스, 논쟁점 정리
+[4단계: 중립 종합]
+    └─ synthesizers/vote_aggregator
 ```
 
-상세: `.claude/commands/deep_dive.md`
+상세: `.claude/skills/deep_dive/SKILL.md`
 
 ## Onboarding 워크플로우 (기업 완전 정복)
 
 ```
 /onboarding [티커]
 
-[1단계: 기초 조사] - 기존 Agent (간소화)
-    ├─ business_model (light) → 사업 개요
-    └─ macro_analyst (light) → 산업 개요
+[1단계: 조사] - 5개 Collector 병렬
+    ├─ collectors/business (light) → 사업 개요
+    ├─ collectors/macro (light) → 산업 개요
+    ├─ collectors/primary_source → SEC 10-K, Earnings Call
+    ├─ collectors/management → 경영진 트랙레코드
+    └─ collectors/narrative → 시대적 맥락, 숨겨진 신호
               │
-[2단계: 심층 조사] - 신규 Agent 3개 병렬
-    ├─ primary_source_researcher → SEC 10-K, Earnings Call
-    ├─ management_profiler → 경영진 트랙레코드
-    └─ narrative_researcher → 시대적 맥락, 숨겨진 신호
-              │
-[3단계: Article 작성]
-    └─ onboarding_writer → 10-30분 분량 서술형 Article
+[2단계: Article 작성]
+    └─ synthesizers/onboarding_writer → 10-30분 분량 서술형 Article
               │
 [출력]
     └─ reports/[티커]/onboarding/article.md
 ```
 
-**핵심 원칙**:
-- 팩트시트가 아닌 **스토리텔링** 형태
-- 처음 접하는 사람도 이해 가능 (용어집 포함)
-- **흥신소 수준**의 깊이 (1차 자료 기반)
-- 투자 권유 없이 중립적 톤
+상세: `.claude/skills/onboarding/SKILL.md`
 
-**deep_dive와 차이점**:
-| 구분 | deep_dive | onboarding |
-|------|-----------|------------|
-| 목적 | 투자 판단 | 기업 이해 |
-| 형태 | 팩트시트 + Persona | 서술형 Article |
-| 대상 | 이미 아는 기업 | 처음 접하는 기업 |
-
-상세: `.claude/commands/onboarding.md`
-
-## Sector Battle 워크플로우 (토너먼트)
+## Thesis Building 워크플로우
 
 ```
-/sector-battle "AI 데이터센터"
-
-[0단계: 초기화]
-    └─ .claude/personas/stocks/*.md 스캔 (frameworks/ 제외)
-    └─ 저장 디렉토리 생성: reports/battles/[섹터]/[타임스탬프]/
-              │
-[1라운드: 선택] - N개 Persona 병렬
-    ├─ 각 페르소나가 섹터 내 최선의 종목 1개 선택
-    └─ 대진표 생성 (같은 종목 → 예선 그룹)
-              │
-[2라운드: 종목별 예선] - 데스매치 (최대 5턴)
-    ├─ 같은 종목 선택자끼리 1:1 토너먼트
-    ├─ 확신도 3 이하 = KO, 5턴 후 높은 쪽 = 판정승
-    └─ 각 종목별 대표 1명 선출
-              │
-[3라운드: 4강] - 데스매치
-    └─ 종목 대표끼리 1:1 대결
-              │
-[4라운드: 결승] - 데스매치
-    └─ 4강 승자끼리 최종 결승
-              │
-[5단계: 집계]
-    └─ 토너먼트 결과 정리 + 명경기 하이라이트
+/coach [티커]           # 세상학개론 코치와 thesis 정리
+                        # - 빈 캔버스에서 시작
+                        # - 소크라테스식 질문으로 사고 유도
+                        # - "내 말"로 투자 논리 정리
 ```
 
-**핵심 원칙**:
-- 1 페르소나 = 1 Agent (컨텍스트 격리)
-- 확신도 변화 있을 때까지 싸움 (최대 5턴)
+상세: `.claude/skills/coach/SKILL.md`
 
-상세: `.claude/commands/sector_battle.md`
+## Interpreter 요약
 
-## Thesis Building 워크플로우 (투자 근육 키우기)
-
-```
-/coach [티커]           # 1단계: 세상학개론 코치와 thesis 정리
-                        #   - 빈 캔버스에서 시작
-                        #   - 소크라테스식 질문으로 내 생각 유도
-                        #   - "내 말"로 투자 논리 정리
-              │
-              ▼
-/challenge [티커]       # 2단계: 7개 페르소나의 날카로운 반론
-                        #   - 확증 편향 방지
-                        #   - 못 본 리스크 발견
-                        #   - 논리의 약점 노출
-              │
-              ▼
-thesis 수정/강화        # 3단계: 반론 반영하여 보강
-              │
-              ▼
-/thesis-check [티커]    # 4단계: 주기적 유효성 점검
-                        #   - 주가 하락 시 thesis 깨졌는지 확인
-                        #   - HOLD / WATCH / EXIT 판정
-              │
-              ▼
-(반복)
-```
-
-**핵심 원칙**:
-- 답을 주지 않고 **질문**으로 사고 유도
-- 빌려온 철학이 아닌 **내 언어**로 체화
-- 흔들릴 때 **팩트 기반** 점검으로 확신 유지
-
-상세:
-- `.claude/commands/coach.md`
-- `.claude/commands/challenge.md`
-- `.claude/commands/thesis_check.md`
-
-## 사용 예시
-
-```
-"/onboarding RKLB"
-→ RKLB 완전 정복 가이드 생성 (처음 접하는 기업용)
-→ 10-30분 분량 서술형 Article + 용어집
-
-"IREN deep dive 해줘"
-→ 전체 워크플로우 실행 (기본: 세상학개론 관점)
-
-"세상학개론 관점으로 분석해줘"
-→ Persona 지정
-
-"아그리파 관점으로도 봐줘"
-→ 기존 팩트시트 + 다른 Persona로 재해석
-
-"Michael Burry 관점으로 리스크 체크해줘"
-→ 역발상/버블 관점 분석
-
-"Terry Smith 관점으로 품질 평가해줘"
-→ 장기 복리 관점 분석
-
-"Druckenmiller 관점으로 타이밍 봐줘"
-→ 매크로 환경 분석
-
-"Bill Ackman 관점으로 분석해줘"
-→ 행동주의/촉매 관점 분석
-
-"/earnings-flash IREN FY25Q2"
-→ 실적 발표 직후 빠른 분석 + 액션 판단
-
-"/sector-battle AI 데이터센터"
-→ 페르소나들이 섹터 내 최고 종목 선택 후 배틀
-→ 4라운드 (선택→공격→반론→투표) 거쳐 승자 결정
-
-"/coach IREN"
-→ 세상학개론 코치와 소크라테스식 대화
-→ 빈 캔버스에서 시작, 질문으로 내 thesis 정리
-
-"/challenge IREN"
-→ 7개 페르소나가 내 thesis를 날카롭게 공격
-→ 확증 편향 방지, 약점 발견
-
-"/thesis-check IREN"
-→ 주가 하락 시 thesis 유효성 빠른 점검
-→ HOLD / WATCH / EXIT 판정
-
-"/thesis-check IREN 오늘 -15% 빠졌어"
-→ 특정 이벤트 대응 점검
-```
-
-## Persona 요약
-
-| Persona | 관점 | 핵심 질문 |
-|---------|------|----------|
-| 세상학개론 | 내러티브 + 유동성 | "시대의 병목을 해결하는가?" |
-| Cathie Wood | 파괴적 혁신 | "5년 후 세상을 바꿀 기술인가?" |
-| Michael Burry | 역발상 + Deep Value | "이게 버블 아닌가?" |
-| Terry Smith | 품질 복리 | "10년 보유할 기업인가?" |
-| Howard Marks | 사이클 + 리스크 | "지금 사이클 어디인가?" |
-| Druckenmiller | 매크로 + 타이밍 | "지금 진입 시점이 맞는가?" |
-| Bill Ackman | 행동주의 + 집중 | "가치를 끌어올릴 촉매가 있는가?" |
+| Interpreter | 관점 | 핵심 질문 |
+|-------------|------|----------|
+| sesang | 내러티브 + 유동성 | "시대의 병목을 해결하는가?" |
+| cathie_wood | 파괴적 혁신 | "5년 후 세상을 바꿀 기술인가?" |
+| michael_burry | 역발상 + Deep Value | "이게 버블 아닌가?" |
+| terry_smith | 품질 복리 | "10년 보유할 기업인가?" |
+| howard_marks | 사이클 + 리스크 | "지금 사이클 어디인가?" |
+| druckenmiller | 매크로 + 타이밍 | "지금 진입 시점이 맞는가?" |
+| bill_ackman | 행동주의 + 집중 | "가치를 끌어올릴 촉매가 있는가?" |
 
 ## 프레임워크 요약
 
@@ -307,4 +194,5 @@ thesis 수정/강화        # 3단계: 반론 반영하여 보강
 | Fisher | 이익률 개선, R&D, 경영진 깊이 |
 | Munger | ROIC > 15%, 이해 가능, FCF 전환 |
 
+프레임워크 상세: `docs/frameworks/`
 재무 지표 상세: `docs/financial_glossary.md`
