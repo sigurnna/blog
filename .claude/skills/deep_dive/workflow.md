@@ -12,10 +12,11 @@
 | 비즈니스 모델 | `business-model-analyst` | `2_business.md` |
 | 경쟁 우위 | `competitive-moat-analyst` | `3_moat.md` |
 | 매크로 분석 | `macro-analyst` | `4_macro.md` |
+| 🔴 경영진 프로파일러 | `management-profiler` | `5_management.md` |
 
 ### 실행 방법
 
-**단일 메시지에서 4개의 Task 도구를 병렬 호출**:
+**단일 메시지에서 5개의 Task 도구를 병렬 호출**:
 
 ```
 Task(subagent_type="financial-analyst",
@@ -29,19 +30,22 @@ Task(subagent_type="competitive-moat-analyst",
 
 Task(subagent_type="macro-analyst",
      prompt="[티커] 매크로 분석. 결과를 reports/[티커]/[날짜]/4_macro.md에 저장")
+
+Task(subagent_type="management-profiler",
+     prompt="[티커] 경영진 흥신소 조사. 결과를 reports/[티커]/[날짜]/5_management.md에 저장")
 ```
 
 ---
 
 ## 2단계: 팩트 통합
 
-**목적**: 4개 팩트시트를 하나로 병합
+**목적**: 5개 팩트시트를 하나로 병합
 
 ### Agent
 
 | Agent | subagent_type | 출력 파일 |
 |-------|---------------|----------|
-| 리포트 통합 | `report-synthesizer` | `5_synthesized.md` |
+| 리포트 통합 | `report-synthesizer` | `6_synthesized.md` |
 
 ### 실행 방법
 
@@ -49,7 +53,7 @@ Task(subagent_type="macro-analyst",
 
 ```
 Task(subagent_type="report-synthesizer",
-     prompt="reports/[티커]/[날짜]/의 1~4번 팩트시트를 통합. 결과를 5_synthesized.md에 저장")
+     prompt="reports/[티커]/[날짜]/의 1~5번 팩트시트를 통합. 결과를 6_synthesized.md에 저장")
 ```
 
 ---
@@ -62,13 +66,13 @@ Task(subagent_type="report-synthesizer",
 
 | Interpreter | subagent_type | 출력 파일 |
 |-------------|---------------|----------|
-| 세상학개론 | `sesang-interpreter` | `6_sesang.md` |
-| Cathie Wood | `cathie-wood-interpreter` | `6_cathie_wood.md` |
-| Michael Burry | `michael-burry-interpreter` | `6_michael_burry.md` |
-| Terry Smith | `terry-smith-interpreter` | `6_terry_smith.md` |
-| Howard Marks | `howard-marks-interpreter` | `6_howard_marks.md` |
-| Druckenmiller | `druckenmiller-interpreter` | `6_druckenmiller.md` |
-| Bill Ackman | `bill-ackman-interpreter` | `6_bill_ackman.md` |
+| 세상학개론 | `sesang-interpreter` | `7_sesang.md` |
+| Cathie Wood | `cathie-wood-interpreter` | `7_cathie_wood.md` |
+| Michael Burry | `michael-burry-interpreter` | `7_michael_burry.md` |
+| Terry Smith | `terry-smith-interpreter` | `7_terry_smith.md` |
+| Howard Marks | `howard-marks-interpreter` | `7_howard_marks.md` |
+| Druckenmiller | `druckenmiller-interpreter` | `7_druckenmiller.md` |
+| Bill Ackman | `bill-ackman-interpreter` | `7_bill_ackman.md` |
 
 ### 실행 방법
 
@@ -76,25 +80,25 @@ Task(subagent_type="report-synthesizer",
 
 ```
 Task(subagent_type="sesang-interpreter",
-     prompt="[티커] 해석. 통합 팩트시트: reports/[티커]/[날짜]/5_synthesized.md. 결과를 6_sesang.md에 저장")
+     prompt="[티커] 해석. 통합 팩트시트: reports/[티커]/[날짜]/6_synthesized.md. 결과를 7_sesang.md에 저장")
 
 Task(subagent_type="cathie-wood-interpreter",
-     prompt="[티커] 해석. 통합 팩트시트: reports/[티커]/[날짜]/5_synthesized.md. 결과를 6_cathie_wood.md에 저장")
+     prompt="[티커] 해석. 통합 팩트시트: reports/[티커]/[날짜]/6_synthesized.md. 결과를 7_cathie_wood.md에 저장")
 
 Task(subagent_type="michael-burry-interpreter",
-     prompt="[티커] 해석. 통합 팩트시트: reports/[티커]/[날짜]/5_synthesized.md. 결과를 6_michael_burry.md에 저장")
+     prompt="[티커] 해석. 통합 팩트시트: reports/[티커]/[날짜]/6_synthesized.md. 결과를 7_michael_burry.md에 저장")
 
 Task(subagent_type="terry-smith-interpreter",
-     prompt="[티커] 해석. 통합 팩트시트: reports/[티커]/[날짜]/5_synthesized.md. 결과를 6_terry_smith.md에 저장")
+     prompt="[티커] 해석. 통합 팩트시트: reports/[티커]/[날짜]/6_synthesized.md. 결과를 7_terry_smith.md에 저장")
 
 Task(subagent_type="howard-marks-interpreter",
-     prompt="[티커] 해석. 통합 팩트시트: reports/[티커]/[날짜]/5_synthesized.md. 결과를 6_howard_marks.md에 저장")
+     prompt="[티커] 해석. 통합 팩트시트: reports/[티커]/[날짜]/6_synthesized.md. 결과를 7_howard_marks.md에 저장")
 
 Task(subagent_type="druckenmiller-interpreter",
-     prompt="[티커] 해석. 통합 팩트시트: reports/[티커]/[날짜]/5_synthesized.md. 결과를 6_druckenmiller.md에 저장")
+     prompt="[티커] 해석. 통합 팩트시트: reports/[티커]/[날짜]/6_synthesized.md. 결과를 7_druckenmiller.md에 저장")
 
 Task(subagent_type="bill-ackman-interpreter",
-     prompt="[티커] 해석. 통합 팩트시트: reports/[티커]/[날짜]/5_synthesized.md. 결과를 6_bill_ackman.md에 저장")
+     prompt="[티커] 해석. 통합 팩트시트: reports/[티커]/[날짜]/6_synthesized.md. 결과를 7_bill_ackman.md에 저장")
 ```
 
 ---
@@ -107,7 +111,7 @@ Task(subagent_type="bill-ackman-interpreter",
 
 | Agent | subagent_type | 출력 파일 |
 |-------|---------------|----------|
-| 투표 집계 | `vote-aggregator` | `7_final.md` |
+| 투표 집계 | `vote-aggregator` | `8_final.md` |
 
 ### 실행 방법
 
@@ -115,7 +119,7 @@ Task(subagent_type="bill-ackman-interpreter",
 
 ```
 Task(subagent_type="vote-aggregator",
-     prompt="reports/[티커]/[날짜]/의 7개 해석 리포트(6_*.md)를 집계. 결과를 7_final.md에 저장")
+     prompt="reports/[티커]/[날짜]/의 7개 해석 리포트(7_*.md)를 집계. 결과를 8_final.md에 저장")
 ```
 
 ### 핵심 원칙

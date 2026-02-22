@@ -68,7 +68,7 @@
 │   │   ├── moat.md               # 경쟁 우위/해자 분석
 │   │   ├── macro.md              # 매크로/산업 분석
 │   │   ├── primary_source.md     # 1차 자료 심층 조사 (SEC, Earnings Call)
-│   │   ├── management.md         # 경영진 프로파일링
+│   │   ├── management.md         # 🔴 경영진 흥신소 조사 (말 vs 행동)
 │   │   └── narrative.md          # 내러티브/시대적 맥락
 │   │
 │   ├── interpreters/         # Persona 내장 해석 에이전트
@@ -125,9 +125,10 @@ reports/                          # 모든 분석 결과물 저장
     │   ├── 2_business.md         # 비즈니스 모델 팩트시트
     │   ├── 3_moat.md             # 경쟁 우위 팩트시트
     │   ├── 4_macro.md            # 매크로 팩트시트
-    │   ├── 5_synthesized.md      # 통합 팩트시트
-    │   ├── 6_[interpreter].md    # Interpreter별 해석 (7개)
-    │   └── 7_final.md            # 중립 종합 리포트
+    │   ├── 5_management.md       # 🔴 경영진 프로필 (흥신소 조사)
+    │   ├── 6_synthesized.md      # 통합 팩트시트
+    │   ├── 7_[interpreter].md    # Interpreter별 해석 (7개)
+    │   └── 8_final.md            # 중립 종합 리포트
     └── onboarding/               # 기업 완전 정복 가이드
 ```
 
@@ -135,7 +136,7 @@ reports/                          # 모든 분석 결과물 저장
 
 | Skill | 설명 | 출력 | 상세 |
 |-------|------|------|------|
-| `/deep_dive [티커]` | 심층 분석 (4 Collector → 7 Interpreter → 종합) | `reports/[티커]/YYYY-MM-DD/` | `.claude/skills/deep_dive/SKILL.md` |
+| `/deep_dive [티커]` | 심층 분석 (5 Collector + 경영진 흥신소 → 7 Interpreter → 종합) | `reports/[티커]/YYYY-MM-DD/` | `.claude/skills/deep_dive/SKILL.md` |
 | `/onboarding [티커]` | 기업 완전 정복 가이드 (처음 접하는 기업용) | `reports/[티커]/onboarding/` | `.claude/skills/onboarding/SKILL.md` |
 | `/coach [티커]` | Thesis 정리 (소크라테스식 질문) | `reports/[티커]/thesis.md` | `.claude/skills/coach/SKILL.md` |
 | `/discover_gems` | X 기반 숨겨진 종목 발굴 | `.task/` | `.claude/skills/discover_gems/SKILL.md` |

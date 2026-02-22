@@ -1,6 +1,6 @@
 ---
 name: deep_dive
-description: 특정 종목에 대한 심층 분석. 4개 Collector로 팩트 수집 후, 7개 Interpreter의 다각도 해석을 거쳐 중립적 종합 리포트를 생성합니다.
+description: 특정 종목에 대한 심층 분석. 5개 Collector로 팩트 수집(경영진 흥신소 조사 포함) 후, 7개 Interpreter의 다각도 해석을 거쳐 중립적 종합 리포트를 생성합니다.
 user-invocable: true
 ---
 
@@ -10,7 +10,7 @@ user-invocable: true
 
 ## 목적
 
-4개 Collector로 **팩트 수집** 후, 7개 Interpreter의 **다각도 해석**을 거쳐 **중립적 종합 리포트**를 생성한다.
+5개 Collector로 **팩트 수집** (경영진 흥신소 조사 포함) 후, 7개 Interpreter의 **다각도 해석**을 거쳐 **중립적 종합 리포트**를 생성한다.
 
 ## 사용법
 
@@ -33,26 +33,27 @@ user-invocable: true
 ## 워크플로우 요약
 
 ```
-[1단계: 팩트 수집] - 4개 Collector 병렬
+[1단계: 팩트 수집] - 5개 Collector 병렬
     ├─ financial-analyst       → 1_financial.md
     ├─ business-model-analyst  → 2_business.md
     ├─ competitive-moat-analyst→ 3_moat.md
-    └─ macro-analyst           → 4_macro.md
+    ├─ macro-analyst           → 4_macro.md
+    └─ management-profiler     → 5_management.md  ← 🔴 흥신소 조사
               │
 [2단계: 팩트 통합]
-    └─ report-synthesizer      → 5_synthesized.md
+    └─ report-synthesizer      → 6_synthesized.md
               │
 [3단계: 다각도 해석] - 7개 Interpreter 병렬
-    ├─ sesang-interpreter      → 6_sesang.md
-    ├─ cathie-wood-interpreter → 6_cathie_wood.md
-    ├─ michael-burry-interpreter → 6_michael_burry.md
-    ├─ terry-smith-interpreter → 6_terry_smith.md
-    ├─ howard-marks-interpreter→ 6_howard_marks.md
-    ├─ druckenmiller-interpreter → 6_druckenmiller.md
-    └─ bill-ackman-interpreter → 6_bill_ackman.md
+    ├─ sesang-interpreter      → 7_sesang.md
+    ├─ cathie-wood-interpreter → 7_cathie_wood.md
+    ├─ michael-burry-interpreter → 7_michael_burry.md
+    ├─ terry-smith-interpreter → 7_terry_smith.md
+    ├─ howard-marks-interpreter→ 7_howard_marks.md
+    ├─ druckenmiller-interpreter → 7_druckenmiller.md
+    └─ bill-ackman-interpreter → 7_bill_ackman.md
               │
 [4단계: 중립 종합]
-    └─ vote-aggregator         → 7_final.md
+    └─ vote-aggregator         → 8_final.md
 ```
 
 상세: [워크플로우](workflow.md)
@@ -67,9 +68,10 @@ reports/[티커]/YYYY-MM-DD/
 ├── 2_business.md       # 비즈니스 모델 팩트시트
 ├── 3_moat.md           # 경쟁 우위 팩트시트
 ├── 4_macro.md          # 매크로 팩트시트
-├── 5_synthesized.md    # 통합 팩트시트
-├── 6_*.md              # Interpreter별 해석 (7개)
-└── 7_final.md          # 중립 종합 리포트
+├── 5_management.md     # 🔴 경영진 프로필 (흥신소 조사)
+├── 6_synthesized.md    # 통합 팩트시트
+├── 7_*.md              # Interpreter별 해석 (7개)
+└── 8_final.md          # 중립 종합 리포트
 ```
 
 ---
@@ -81,12 +83,13 @@ reports/[티커]/YYYY-MM-DD/
 
 ### Collectors
 
-| Agent | 파일 |
-|-------|------|
-| 재무 분석가 | `agents/collectors/financial.md` |
-| 비즈니스 모델 | `agents/collectors/business.md` |
-| 경쟁 우위 | `agents/collectors/moat.md` |
-| 매크로 분석 | `agents/collectors/macro.md` |
+| Agent | 파일 | 핵심 조사 |
+|-------|------|----------|
+| 재무 분석가 | `agents/collectors/financial.md` | Lynch/Buffett/Fisher/Munger 지표 |
+| 비즈니스 모델 | `agents/collectors/business.md` | 수익 구조, 단위 경제학 |
+| 경쟁 우위 | `agents/collectors/moat.md` | 해자 유형, 가격 결정력 |
+| 매크로 분석 | `agents/collectors/macro.md` | 산업/규제/거시경제 |
+| 🔴 경영진 프로파일러 | `agents/collectors/management.md` | 흥신소 수준 조사 (말 vs 행동) |
 
 ### Interpreters
 
@@ -128,10 +131,11 @@ reports/[티커]/YYYY-MM-DD/
 - [ ] 출력 디렉토리 날짜 확인 (YYYY-MM-DD)
 
 실행 중:
-- [ ] 1단계: 4개 Collector를 병렬 호출했는가?
+- [ ] 1단계: 5개 Collector를 병렬 호출했는가? (경영진 포함)
 - [ ] 2단계: 통합 완료 후 3단계 진행하는가?
 - [ ] 3단계: 7개 Interpreter를 병렬 호출했는가?
 
 실행 후:
-- [ ] 7_final.md에 투표 집계가 있는가?
+- [ ] 8_final.md에 투표 집계가 있는가?
 - [ ] 컨센서스와 논쟁점이 정리되었는가?
+- [ ] 경영진 신뢰 점수가 반영되었는가?
